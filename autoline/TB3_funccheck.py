@@ -516,8 +516,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.any(failed_matrix == 0, axis=0) & np.any(failed_matrix == 1, axis=0))[0] + 1
                 tb_pass = len(wrong_col_index) == 0 # as long as there is no fully wrong column, the tb is correct (loose criterion)
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
-                # my_log = logger.positive if tb_pass else logger.negative
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )                # my_log = logger.positive if tb_pass else logger.negative
                 # my_log.info(f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}")
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_80_wrong":
@@ -526,7 +525,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.logical_and(np.sum(failed_matrix == 0, axis=0) < 0.8*len(failed_matrix), np.any(failed_matrix == 0, axis=0)))[0] + 1
                 tb_pass = len(wrong_col_index) == 0
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )                
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_90_wrong":
                 # check which column of the matrix is 90% wrong (0)
@@ -534,7 +533,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.logical_and(np.sum(failed_matrix == 0, axis=0) < 0.9*len(failed_matrix), np.any(failed_matrix == 0, axis=0)))[0] + 1
                 tb_pass = len(wrong_col_index) == 0
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_70_wrong":
                 # check which column of the matrix is 70% wrong (0)
@@ -542,7 +541,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.logical_and(np.sum(failed_matrix == 0, axis=0) < 0.7*len(failed_matrix), np.any(failed_matrix == 0, axis=0)))[0] + 1
                 tb_pass = len(wrong_col_index) == 0
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_70_wrong_row_25_correct":
                 # check which column of the matrix is 70% wrong (0)
@@ -552,7 +551,7 @@ class TB_discriminator():
                 tb_pass = len(wrong_col_index) == 0
                 if np.sum(np.all(failed_matrix == 1, axis=1)) >= 0.25*len(failed_matrix):
                     tb_pass = True
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_70_wrong_row_1_correct":
                 # check which column of the matrix is 70% wrong (0)
@@ -562,7 +561,7 @@ class TB_discriminator():
                 tb_pass = len(wrong_col_index) == 0
                 if np.sum(np.all(failed_matrix == 1, axis=1)) >= 0.01*len(failed_matrix):
                     tb_pass = True
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_70_wrong_row_10_correct":
                 # check which column of the matrix is 70% wrong (0)
@@ -572,7 +571,7 @@ class TB_discriminator():
                 tb_pass = len(wrong_col_index) == 0
                 if np.sum(np.all(failed_matrix == 1, axis=1)) >= 0.1*len(failed_matrix):
                     tb_pass = True
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_60_wrong":
                 # check which column of the matrix is 60% wrong (0)
@@ -580,7 +579,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.logical_and(np.sum(failed_matrix == 0, axis=0) < 0.6*len(failed_matrix), np.any(failed_matrix == 0, axis=0)))[0] + 1
                 tb_pass = len(wrong_col_index) == 0
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_50_wrong":
                 # check which column of the matrix is 50% wrong (0)
@@ -588,7 +587,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.logical_and(np.sum(failed_matrix == 0, axis=0) < 0.5*len(failed_matrix), np.any(failed_matrix == 0, axis=0)))[0] + 1
                 tb_pass = len(wrong_col_index) == 0
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_50_wrong_row_25_correct":
                 # check which column of the matrix is 50% wrong (0)
@@ -598,7 +597,7 @@ class TB_discriminator():
                 tb_pass = len(wrong_col_index) == 0
                 if np.sum(np.all(failed_matrix == 1, axis=1)) >= 0.25*len(failed_matrix):
                     tb_pass = True
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case "col_40_wrong":
                 # check which column of the matrix is 40% wrong (0)
@@ -606,7 +605,7 @@ class TB_discriminator():
                 correct_col_index = np.where(np.all(np.isin(failed_matrix, [1, -1]), axis=0))[0] + 1
                 unsure_col_index = np.where(np.logical_and(np.sum(failed_matrix == 0, axis=0) < 0.4*len(failed_matrix), np.any(failed_matrix == 0, axis=0)))[0] + 1
                 tb_pass = len(wrong_col_index) == 0
-                logger.match_level(tb_pass, "positive", "negative", f"TB_discriminating finished, TB {"passed" if tb_pass else "failed"}, wrong scenarios: {wrong_col_index}, scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}")
+                logger.match_level( tb_pass, "positive", "negative", f"TB_discriminating finished, TB {'passed' if tb_pass else 'failed'}, " f"wrong scenarios: {wrong_col_index}, " f"scenario pass ratio: {len(correct_col_index)}/{len(failed_matrix[0])}" )
                 return tb_pass, wrong_col_index, correct_col_index, unsure_col_index
             case _:
                 logger.critical("TB discriminator - mode not found!!!")
