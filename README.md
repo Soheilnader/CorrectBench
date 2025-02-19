@@ -43,7 +43,7 @@ see [requirements.txt](requirements.txt):
 - PyYAML==6.0.2
 - Requests==2.32.3
 - tiktoken==0.7.0
-
+- httpx==0.27.2  <- If you get: {{ERROR}} [conditional] Client.__init__() got an unexpected keyword argument 'proxies'
 
 ### LLM API keys
 
