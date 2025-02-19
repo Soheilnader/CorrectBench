@@ -283,7 +283,7 @@ class AutoLine_Task():
                         self.run_TBsim(f"{i+1}_2_TBsim")
                         self.run_TBcheck(f"{i+1}_3_TBcheck")
                     except Exception as e:
-                        logger.error(f"error when running {self.stage_now}, current pipeline iter: {i+1}, will {"REBOOT" if i<self.iter_max-1 else "go to NEXT STAGE"}. error message: {str(e)}")
+                        logger.error(f"error when running {self.stage_now}, current pipeline iter: {i+1}, will {'REBOOT' if i<self.iter_max-1 else 'go to NEXT STAGE'}. error message: {str(e)}")
                         self.next_action = "reboot"
                         continue
                     match self.next_action:
